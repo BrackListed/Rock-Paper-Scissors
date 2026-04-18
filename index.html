@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link href = "index.css" rel = "stylesheet">
+</head>
+
+<body>
+    <div class  = "container"> 
+        <div class = "left" >
+            <div class = "player-actions">
+            <button id = "rock" onclick = "rockAction()"><img src = "./images/Rock.png" alt = "Image of rock"></button>
+            <button id = "paper" onclick = "paperAction()"><img src = "./images/Paper.png" alt = "Image of rock"></button>
+            <button id = "scissor" onclick = "scissorAction()"><img src = "./images/Scissors.png" alt = "Image of rock"></button>
+            </div>
+            <p id = "action-reminder">Action reminder placeholder</p>
+            <p id = "status">Status placeholder</p>
+        </div>
+        <div class = "right">
+            <p>Bot's action: </p>
+            <p id = "img-placeholder"></p>
+        </div>
+    </div>
+    <button id = "start-game" onclick = "startgame()">Start Game</button>
+
+    
+    <script src = "index.js"></script>
+</body>
+</html>
