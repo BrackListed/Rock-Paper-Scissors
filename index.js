@@ -11,21 +11,31 @@ let actions = [
 let randomIndex = Math.floor(Math.random() * actions.length)
 let bot = actions[randomIndex].name
 let imgPlaceholder = document.getElementById("img-placeholder")
+let hasChosen = false;
+let playerReady = 0;
+let startGame = document.getElementById("start-game")
+
 
 
 function rockAction(){
     playerAction = "Rock"
     actionReminder.textContent  = "Action Chosen: " + playerAction
+    hasChosen = true
+    startGame.style.display = "block"
 }
 
 function scissorAction(){
     playerAction = "Scissors"
     actionReminder.textContent  = "Action Chosen: " + playerAction
+    hasChosen = true
+    startGame.style.display = "block"
 }
 
 function paperAction(){
     playerAction = "Paper"
     actionReminder.textContent  = "Action Chosen: " + playerAction
+    hasChosen = true
+    startGame.style.display = "block"
 }
 
 function rockScenario(){
@@ -52,6 +62,7 @@ function scissorScenario(){
         status.textContent = "You win!"
         alert("You won!")
     }   
+
 }
 
 function paperScenario(){
@@ -68,14 +79,20 @@ function paperScenario(){
 }
 
 function startgame(){
-    rockScenario()
-    scissorScenario()
-    paperScenario()
-    let actionImg = document.createElement("img")
-    actionImg.src = actions[randomIndex].img
-    imgPlaceholder.appendChild(actionImg)
+    playerReady += 1
+    if(hasChosen === true && playerReady === 1){
+        rockScenario()
+        scissorScenario()
+        paperScenario()
+        let actionImg = document.createElement("img")
+        actionImg.src = actions[randomIndex].img
+        imgPlaceholder.appendChild(actionImg)
             setTimeout(() => {
            location.reload() 
-        }, 1000);
+        }, 1000);   
+    } else{
+        alert("Choose something")
+    }
+
 }
 
