@@ -67,3 +67,13 @@ body{
     background-color: gray;
     cursor: pointer;
 }
+
+
+#status{
+    background-color: greenyellow;
+    text-align: center;
+    border-radius:  8px;
+    width: 200px;
+    height: auto;
+    font-size: 24px;
+}

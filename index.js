@@ -8,14 +8,16 @@ let actions = [
     {name: "Paper", img: "./images/Paper.png"},
     {name: "Scissors", img: "./images/Scissors.png"}
 ]
-let randomIndex = Math.floor(Math.random() * actions.length)
-let bot = actions[randomIndex].name
+let bot = []
 let imgPlaceholder = document.getElementById("img-placeholder")
 let hasChosen = false;
 let playerReady = 0;
 let startGame = document.getElementById("start-game")
 
-
+function restartGame(){
+    playerAction = ""
+    hasChosen = false
+}
 
 function rockAction(){
     playerAction = "Rock"
@@ -41,26 +43,26 @@ function paperAction(){
 function rockScenario(){
     if(playerAction === "Rock" && bot === "Rock"){
         status.textContent = "Tie"
-        alert("Tie")
+        
     } else if(playerAction === "Rock" && bot === "Scissors"){
         status.textContent = "You win!"
-        alert("You won!")
+        
     } else if(playerAction === "Rock" && bot === "Paper"){
         status.textContent = "You lost."
-        alert("You lost")
+        
     }
 }
 
 function scissorScenario(){
     if(playerAction === "Scissors" && bot === "Rock"){
         status.textContent = "You lost."
-        alert("You lost")
+        
     } else if(playerAction === "Scissors" && bot === "Scissors"){
         status.textContent = "Tie."
-        alert("Tie")
+        
     } else if(playerAction === "Scissors" && bot === "Paper"){
         status.textContent = "You win!"
-        alert("You won!")
+        
     }   
 
 }
@@ -68,31 +70,32 @@ function scissorScenario(){
 function paperScenario(){
     if(playerAction === "Paper" && bot === "Rock"){
         status.textContent = "You win!"
-        alert("You won!")
+        
     } else if(playerAction === "Paper" && bot === "Scissors"){
         status.textContent = "You lost."
-        alert("You lost.")
+        
     } else if(playerAction === "Paper" && bot === "Paper"){
         status.textContent = "Tie"
-        alert("Tie")
+        
     }
 }
 
 function startgame(){
+    let randomIndex = Math.floor(Math.random() * actions.length)
+    bot = actions[randomIndex].name
+    imgPlaceholder.textContent = ""
     playerReady += 1
-    if(hasChosen === true && playerReady === 1){
+    if(hasChosen === true && playerReady >= 1){
         rockScenario()
         scissorScenario()
         paperScenario()
         let actionImg = document.createElement("img")
         actionImg.src = actions[randomIndex].img
         imgPlaceholder.appendChild(actionImg)
-            setTimeout(() => {
-           location.reload() 
-        }, 1000);   
-    } else{
-        alert("Choose something")
+        restartGame()
+        console.log(bot)
+        //     setTimeout(() => {
+        //    location.reload() 
+        // }, 1000);   
     }
-
 }
-
