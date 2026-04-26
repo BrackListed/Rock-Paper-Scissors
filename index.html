@@ -15,7 +15,8 @@
             <button id = "paper" onclick = "paperAction()"><img src = "./images/Paper.png" alt = "Image of rock"></button>
             <button id = "scissor" onclick = "scissorAction()"><img src = "./images/Scissors.png" alt = "Image of rock"></button>
             </div>
-            <p id = "action-reminder"></p>
+            <p id = "action-reminder">Action Chosen: None</p>
+            <p id = "player-stats">Wins: , Losses: </p>
         </div>
         <div class = "right">
             <p>Bot's action: </p>
@@ -24,6 +25,7 @@
     </div>
     <button id = "start-game" onclick = "startgame()">Start Game</button>
     <div id = "status"></div>
+    <button  id = "clear-button" onclick = "clearStorage()">Clear Stats</button>
 
     
     <script src = "index.js"></script>

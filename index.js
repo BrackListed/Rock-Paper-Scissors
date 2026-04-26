@@ -13,10 +13,15 @@ let imgPlaceholder = document.getElementById("img-placeholder")
 let hasChosen = false;
 let playerReady = 0;
 let startGame = document.getElementById("start-game")
+let playerStats = document.getElementById("player-stats")
+let winCount = parseInt(localStorage.getItem("winCount")) || 0
+let lossCount = parseInt(localStorage.getItem("lossCount")) || 0
+let clearStats = document.getElementById("clear-button")
 
 function restartGame(){
     playerAction = ""
     hasChosen = false
+    actionReminder.textContent = "Action Chosen: None"
 }
 
 function rockAction(){
@@ -46,9 +51,11 @@ function rockScenario(){
         
     } else if(playerAction === "Rock" && bot === "Scissors"){
         status.textContent = "You win!"
+        winCount += 1
         
     } else if(playerAction === "Rock" && bot === "Paper"){
         status.textContent = "You lost."
+        lossCount += 1
         
     }
 }
@@ -56,12 +63,14 @@ function rockScenario(){
 function scissorScenario(){
     if(playerAction === "Scissors" && bot === "Rock"){
         status.textContent = "You lost."
+        lossCount += 1
         
     } else if(playerAction === "Scissors" && bot === "Scissors"){
         status.textContent = "Tie."
         
     } else if(playerAction === "Scissors" && bot === "Paper"){
         status.textContent = "You win!"
+        winCount += 1
         
     }   
 
@@ -70,9 +79,11 @@ function scissorScenario(){
 function paperScenario(){
     if(playerAction === "Paper" && bot === "Rock"){
         status.textContent = "You win!"
+        winCount += 1
         
     } else if(playerAction === "Paper" && bot === "Scissors"){
         status.textContent = "You lost."
+        lossCount += 1
         
     } else if(playerAction === "Paper" && bot === "Paper"){
         status.textContent = "Tie"
@@ -81,6 +92,7 @@ function paperScenario(){
 }
 
 function startgame(){
+    playerStats.textContent = "Wins: " + winCount + "Loss: " + lossCount
     let randomIndex = Math.floor(Math.random() * actions.length)
     bot = actions[randomIndex].name
     imgPlaceholder.textContent = ""
@@ -93,9 +105,23 @@ function startgame(){
         actionImg.src = actions[randomIndex].img
         imgPlaceholder.appendChild(actionImg)
         restartGame()
-        console.log(bot)
-        //     setTimeout(() => {
-        //    location.reload() 
-        // }, 1000);   
     }
+    JSON.stringify(winCount)
+    JSON.stringify(lossCount)
+    localStorage.setItem("winCount", winCount)
+    localStorage.setItem("lossCount", lossCount)
+    if(winCount > 0 ){
+        clearStats.style.display = "block"
+    } else if(lossCount > 0){
+        clearStats.style.display = "block"
+    } else if(winCount > 0 && lossCount > 0){
+        clearStats.style.display = "block"
+    }
+}
+
+function clearStorage(){
+    localStorage.clear()
+    winCount = 0
+    lossCount = 0
+    playerStats.textContent = "Wins: 0 Loss: 0"
 }
